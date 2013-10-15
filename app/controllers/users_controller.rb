@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-    before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user,   only: :edit
+  
   # GET /users
   # GET /users.json
   def index
@@ -21,6 +23,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    
   end
 
   # POST /users
@@ -30,7 +33,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        flash[:success] = "Welcome to the Framgia Blog!"
+        flash[:success] = "Welcome to the Ruby on Rails Blog!"
         format.html { redirect_to root_path}
         format.json { render action: 'show', status: :created, location: @user }
       else
@@ -43,14 +46,11 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if (@user.update_attribute('name', user_params[:name])&&@user.update_attribute('phone', user_params[:phone]))
+      flash[:success] = "User was successfully updated"
+      redirect_to edit_user_path(@user)
+    else
+      render action: 'edit'
     end
   end
 
@@ -73,5 +73,10 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :email, :phone, :position_id, :password, :password_confirmation)
+    end
+    
+    def correct_user
+      @profile = (current_user[:id].to_s == params[:id].to_s)
+      redirect_to root_url if !@profile
     end
 end

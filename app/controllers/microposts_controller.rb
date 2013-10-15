@@ -4,6 +4,7 @@ class MicropostsController < ApplicationController
   
   def new
     @micropost = Micropost.new
+    @user = current_user
   end
   
   def show
