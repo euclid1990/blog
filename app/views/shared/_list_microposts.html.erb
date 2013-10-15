@@ -1,0 +1,20 @@
+<% if @microposts.any? %>
+	<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th>Title</th>
+	      <th>Content</th>
+	      <th>Created</th>
+	      <th>Detail</th>
+	      <% if current_user?(@microposts[0].user) %>
+	  			<th>Delete</th>
+	  		<% end %>
+	    </tr>
+	  </thead>
+	  <tbody>
+	  	<%= render partial: 'microposts/micropost', collection: @microposts %>
+	    </tbody>
+	</table>
+<% else %>
+	<div class="alert alert-info">※ No POST TO DISPLAY</div>
+<% end %>

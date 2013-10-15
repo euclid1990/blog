@@ -1,0 +1,16 @@
+<div class = "login-form">
+	<%= form_for(:session, url: sessions_path, :html => {autocomplete: 'off'}) do |f| %>
+		<%#= render 'shared/error_messages', object: f.object %>
+	  <div class="field form-group">
+	    <%= f.text_field :email, class: 'form-control login-field', placeholder: 'Enter your email'  %>
+	    <label class="login-field-icon fui-mail" for="user_email"></label>
+	  </div>
+	  <div class="field form-group">
+	    <%= f.password_field :password, class: 'form-control login-field', placeholder: 'Enter your password'  %>
+	    <label class="login-field-icon fui-lock" for="user_password"></label>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit 'Sign in', :class => 'btn btn-info btn-block' %>
+	  </div>
+	<% end %>
+</div>

@@ -1,0 +1,21 @@
+<%= form_for(@micropost, :html => {class: 'form-horizontal', role: 'form', autocomplete: 'on'}) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="form-group">
+    <label for="Title" class="col-lg-2 control-label">Title *</label>
+    <div class="col-lg-10">
+    	<%= f.text_field :title, class: 'form-control input-sm', placeholder: 'Title' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="Reason" class="col-lg-2 control-label">Content *</label>
+    <div class="col-lg-10">
+    	<%= text_area(:micropost, :content, rows: 5, class: 'form-control input-sm', placeholder: 'Enter the content here ...') %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+    	<%= f.submit 'Submit', :class => 'btn btn-inverse' %>
+    	<a href="<%= root_path %>" class='btn btn-danger'>Cancel</a>
+    </div>
+  </div>
+<% end %>

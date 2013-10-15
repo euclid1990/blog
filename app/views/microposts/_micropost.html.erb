@@ -1,0 +1,21 @@
+<tr>
+  <td class="col-lg-3"><%= micropost.title %></td>
+  <td class="col-lg-6"><%= micropost.content %></td>
+  <td><%= micropost.created_at.strftime("%Y-%m-%d") %></td>
+  <td><a href="/microposts/<%= micropost.id %>">
+		<button type="button" class="btn btn-info btn-sm">
+		  <span class="glyphicon glyphicon-link"></span>
+		</button>
+	</a></td>
+  
+	<% if current_user?(micropost.user) %>
+  	<td>
+  		<a data-confirm="You sure?" data-method="delete" href="/microposts/<%= micropost.id %>" rel="nofollow" title="<%= micropost.title %>">
+  			<button type="button" class="btn btn-danger btn-sm">
+				  <span class="glyphicon glyphicon-trash"></span>
+				</button>
+			</a>
+		</td>
+	<% end %>
+ 	
+</tr>

@@ -1,0 +1,34 @@
+<h2><%= @user.name %>'s Blog</h2>
+<div class="row">
+	<div class="col-md-offset-2 user_info">
+		<dl class="dl-horizontal">
+	  <dt>Name</dt>
+	  <dd><%= @user.name %></dd>
+	  <dt>Email</dt>
+	  <dd><%= @user.email %></dd>
+	  <dt>Phone</dt>
+	  <dd><%= @user.phone %></dd>
+	</dl>		
+	</div>		
+</div>
+
+	<%= render 'shared/list_microposts' %>  
+	<%= will_paginate @microposts %>
+	
+<% if signed_in? %>
+	<a href="<%= root_path %>" class="btn btn-inverse footer_navigation">
+		<span>
+	    <i class="fui-arrow-left"></i>
+	    Back
+	  </span>
+	</a>
+<% else %>
+  <a href="<%= signin_path %>" class="btn btn-inverse footer_navigation">
+		<span>
+	    <i class="fui-arrow-left"></i>
+	    Sign in
+	  </span>
+	</a>
+<% end %>
+
+<div class="clear"></div>

@@ -1,0 +1,28 @@
+<div class = "login-form">
+	<%= form_for(@user, :html => {autocomplete: 'off'}) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+	  <div class="field form-group">
+	    <%= f.text_field :name, class: 'form-control login-field', placeholder: 'Enter your name' %>
+	    <label class="login-field-icon fui-user" for="user_name"></label>
+	  </div>
+	  <div class="field form-group">
+	    <%= f.text_field :email, class: 'form-control login-field', placeholder: 'Enter your email'  %>
+	    <label class="login-field-icon fui-mail" for="user_email"></label>
+	  </div>
+	  <div class="field form-group">
+	    <%= f.text_field :phone, class: 'form-control login-field', placeholder: 'Enter your phone number'  %>
+	    <label class="login-field-icon glyphicon glyphicon-phone" for="user_phone"></label>
+	  </div>
+	  <div class="field form-group">
+	    <%= f.password_field :password, class: 'form-control login-field', placeholder: 'Enter your password'  %>
+	    <label class="login-field-icon fui-lock" for="user_password"></label>
+	  </div>
+	  <div class="field form-group">
+	  	<%= f.password_field :password_confirmation, class: 'form-control login-field', placeholder: 'Re-Enter your password'  %>
+	    <label class="login-field-icon fui-lock" for="user_password_confirmation"></label>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit 'Sign up', :class => 'btn btn-info btn-block' %>
+	  </div>
+	<% end %>
+</div>

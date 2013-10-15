@@ -1,0 +1,45 @@
+<div class="center">
+  <button type="button" class="btn btn-info btn-hg" style="font-size: 15px;font-weight: bold">
+  <span class="glyphicon glyphicon-tags"></span>&nbsp;&nbsp;Post Detail
+</button>
+</div>
+
+<div class="row">
+	<div class="post_info">
+		<dl class="dl-horizontal">
+	  <dt>Title:</dt>
+	  <dd><%= @micropost.title %></dd>
+	  <dt>Content:</dt>
+	  <dd><pre class="prettyprint" style="font-size: 16px;" ><%= @micropost.content %></pre></dd>
+	  <dt>Created:</dt>
+	  <dd><%= @micropost.created_at.strftime("%Y-%m-%d") %></dd>
+	  <dt>Author:</dt>
+	  <dd><%= @micropost.author %></dd>
+	</dl>		
+	</div>		
+</div>
+
+<div class="bs-example">
+	<% if @comments.any? %>
+  	<%= render partial: 'comments/comment', collection: @comments %>
+	<% end %>  
+  <%= form_for([@micropost, @micropost.comments.build], :html => {class: 'form-horizontal', role: 'form', autocomplete: 'on'}) do |f| %>
+	  <%= render 'shared/error_messages', object: f.object %>
+	  <div class="form-group">
+	    <label for="Reason" class="col-lg-2 control-label">Comment</label>
+	    <div class="col-lg-10">
+	    	<%= text_area(:comment, :content, rows: 2, class: 'form-control input-sm', placeholder: 'Enter the comment here ...') %>
+	    </div>
+	  </div>
+	  <div class="form-group">
+	    <div class="col-lg-offset-2 col-lg-10">
+	    	<%= f.submit 'Create', :class => 'btn btn-inverse' %>&nbsp;&nbsp;
+	    	<a href="<%= user_path(@micropost.user) %>">
+					<button type="button" class="btn btn-warning sm">
+				  <span class="glyphicon glyphicon-arrow-left">Back</span>
+				</button>
+	</a>
+	    </div>
+	  </div>
+	<% end %>
+</div>
