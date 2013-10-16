@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
       flash[:success] = "Cooment just added ^^"
       redirect_to micropost_path(@micropost)
     else
-      flash[:success] = "Comment can't be blank !"
+      flash[:success] = "Name and Comment can't be blank !"
       redirect_to micropost_path(@micropost)
     end
   end
@@ -23,6 +23,6 @@ class CommentsController < ApplicationController
   private
 
     def comment_params
-      params.require(:comment).permit(:content)
+      params.require(:comment).permit(:name, :content)
     end
 end

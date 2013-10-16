@@ -26,8 +26,23 @@
 	<% end %>  
   <%= form_for([@micropost, @micropost.comments.build], :html => {class: 'form-horizontal', role: 'form', autocomplete: 'on'}) do |f| %>
 	  <%= render 'shared/error_messages', object: f.object %>
+	  <% if signed_in? %>
+		  <div class="form-group">
+		    <label for="Name" class="col-lg-2 control-label">Name</label>
+		    <div class="col-lg-10">
+		    	<%= f.text_field :name, class: 'form-control input-sm', value: current_user.name, readonly: 'true', style:"color: #B065EB;", placeholder: 'Enter your name' %>
+		    </div>
+		  </div>
+		<% else %>
+			<div class="form-group">
+		    <label for="Name" class="col-lg-2 control-label">Name</label>
+		    <div class="col-lg-10">
+		    	<%= f.text_field :name, class: 'form-control input-sm', placeholder: 'Enter your name' %>
+		    </div>
+		  </div>
+		<% end %>
 	  <div class="form-group">
-	    <label for="Reason" class="col-lg-2 control-label">Comment</label>
+	    <label for="Comment" class="col-lg-2 control-label">Comment</label>
 	    <div class="col-lg-10">
 	    	<%= text_area(:comment, :content, rows: 2, class: 'form-control input-sm', placeholder: 'Enter the comment here ...') %>
 	    </div>

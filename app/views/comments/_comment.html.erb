@@ -1,3 +1,11 @@
 <div class="alert alert-success">
-  <strong>#</strong> <%= comment.content %>.
+  <strong>
+  	<%= 
+  		if(comment.name.nil?)
+  			"No name"
+  		else
+  			comment.name
+  		end
+  	%>
+  :</strong> <%= comment.content %>
 </div>
