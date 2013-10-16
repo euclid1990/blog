@@ -8,4 +8,13 @@ module ApplicationHelper
       "#{page_title} | #{base_title}"
     end
   end
+  
+  def owner_post_of_comment(micropost_id)
+    @user_post_id = Micropost.find_by(id: micropost_id).user_id
+    if signed_in?
+      current_user[:id] == @user_post_id
+    else
+      false
+    end
+  end
 end

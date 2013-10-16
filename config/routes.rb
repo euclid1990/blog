@@ -6,7 +6,7 @@ Blog::Application.routes.draw do
   resources :micropost do
     resources :comments
   end
-
+  match '/comments/delete',  to: 'comments#delete',            via: 'post'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'

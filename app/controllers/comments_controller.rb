@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => [:delete]
   def new
     @comment = Comment.new
   end
@@ -17,6 +18,19 @@ class CommentsController < ApplicationController
     else
       flash[:success] = "Name and Comment can't be blank !"
       redirect_to micropost_path(@micropost)
+    end
+  end
+  
+  def delete
+    @comment = Comment.find_by(id: params[:id])
+    data = Array.new
+    if @comment.present?
+      @comment.destroy
+      data = {'ERROR' => '0'}
+      render json: data
+    else
+      data = {'ERROR' => '1'}
+      render json: data
     end
   end
   

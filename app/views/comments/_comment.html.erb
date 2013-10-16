@@ -1,4 +1,7 @@
 <div class="alert alert-success">
+	<% if (owner_post_of_comment(comment.micropost_id)) %>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true" onclick="return deleteComment(<%= comment.id %>);" >×</button>
+  <% end %>
   <strong>
   	<%= 
   		if(comment.name.nil?)
